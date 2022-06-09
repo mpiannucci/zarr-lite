@@ -46,7 +46,8 @@ async function openArray({ store, path = '' }) {
     meta.compressor = await getCodec(meta.compressor);
   }
   store = new Proxy(store, storeHandler);
-  return new ZarrArray({ store, path, chunk_shape: meta.chunks, chunk_separator: meta.dimension_separator ?? '.', ...meta });
+  // For now... to satisfy our internal babel
+  return new ZarrArray({ store, path, chunk_shape: meta.chunks, chunk_separator: '.', ...meta });
 }
 
 // alias zarrita.js conventions for store to zarr-lite/zarr.js conventions.
